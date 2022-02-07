@@ -54,6 +54,13 @@
             padding: 1rem;
         }
     </style>
+
+    <script>
+        window.onload = function() {
+            document.getElementById("bot_message").innerHTML = "새로운 시작이에요.";
+        }
+        
+    </script>
 </head>
 
 
@@ -64,7 +71,7 @@
 
     <content>
         <div>
-            <p class="bot_message">🥞 안녕, 만나서 반가워요 ! 🥞</p>
+            <p class="bot_message" id="bot_message">🥞 안녕, 만나서 반가워요 ! 🥞</p>
             <br>
             <img class="main_img" src="https://i.pinimg.com/originals/3b/78/a5/3b78a5bda71d77aaea171943a530bc0c.gif">
         </div>
