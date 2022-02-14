@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐱 Catculator 🐱</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            background-color: #91b59f;
+            text-align: center;
+        }
+
+        .container {
+            width: 500px;
+            height: 650px;
+            background-color: #f2f1ed;
+            margin: auto;
+            border-radius: 2rem;
+        }
+
+        h1 {
+            color: white;
+            padding-bottom: 1rem;
+            font-family: 'Rubik Mono One', sans-serif;
+        }
+
+        .ear-l, .ear-r {
+            width: 0px;
+            height: 0px;
+           border-bottom: 100px solid #5c5c5c;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 0 80px;
+        }
+
+        .ear-l {
+            margin-bottom: -18px;
+            transform: rotate(-10deg);
+        }
+
+        .ear-r {
+            margin-bottom: -18px;
+            transform: rotate(10deg);
+        }
+        
+        .inner1 {
+            width: 0;
+            height: 0;
+            border-bottom: 100px solid pink;
+            border-left: 60px solid transparent;
+            right: 60px;
+            position: relative;
+        }
+        .inner2 {
+            width: 0;
+            height: 0;
+            border-bottom: 100px solid pink;
+            border-right: 60px solid transparent;
+        }
+        .head {
+            height: 4rem;
+            border-radius: 1rem 1rem 0 0;
+            background-color: #5c5c5c;
+        }
+
+        .output {
+            height: 4rem;
+            width: 80%;
+            border-radius: 2rem;
+            margin: 2rem auto;
+            background-color: #303030;
+            color: pink;
+            font-size: 1.5rem;
+            font-family: 'Press Start 2P', cursive;
+            padding-top: 2rem;
+        }
+
+        .btn:hover {
+            background-color: #5c5c5c;
+            color: white;
+        }
+        .btn {
+            background-color: pink;
+            border: none;
+            width: 70px;
+            height: 70px;
+            margin: 0.2rem;
+            border-radius: 3rem;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <h1>🐱 CAT-CULATOR 🐱</h1>
+
+    <div class="box">
+        <div class="ear-l"><div class="inner1"></div></div>
+        <div class="ear-r"><div class="inner2"></div></div>
+
+        <div class="container">
+            <div class="head"></div>
+            <div class="output" id="output">HELLO</div>
+
+            <div class="keypad">
+                <button class="btn" onclick="op('%')">%</button>
+                <button class="btn" onclick="op('/')">/</button>
+                <button class="btn" onclick="clear_all()">C</button>
+                <button class="btn" onclick="del()">del</button>
+                <br>
+                <button class="btn" onclick="num(1)">1</button>
+                <button class="btn" onclick="num(2)">2</button>
+                <button class="btn" onclick="num(3)">3</button>
+                <button class="btn" onclick="op('*')">x</button>
+                <br>
+                <button class="btn" onclick="num(4)">4</button>
+                <button class="btn" onclick="num(5)">5</button>
+                <button class="btn" onclick="num(6)">6</button>
+                <button class="btn" onclick="op('-')">-</button>
+                <br>
+                <button class="btn" onclick="num(7)">7</button>
+                <button class="btn" onclick="num(8)">8</button>
+                <button class="btn" onclick="num(9)">9</button>
+                <button class="btn" onclick="op('+')">+</button>
+                <br>
+                <button class="btn" onclick="">+/-</button>
+                <button class="btn" onclick="num(0)">0</button>
+                <button class="btn" onclick="">.</button>
+                <button class="btn" onclick="enter()" style="font-size: 1.2rem;">🐾</button>
+            </div>
+        </div>
+    </div>
+    <script src="./day06_calc.js"></script>
+</body>
+</html>
