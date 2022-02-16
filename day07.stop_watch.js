@@ -7,6 +7,7 @@ var sec = 0;
 var min = 0;
 var hrs = 0;
 
+// timeout 인스턴스
 var t;
 
 // 1초 증가
