@@ -11,10 +11,10 @@ var wall_e = new Movie("wall-e", 2008, "animation");
 var deadpool = new Movie("deadpool", 2016, "action");
 var dead_poets_society = new Movie("dead poets society", 1990, "drama");
 
-var movie = [wall_e, dead_poets_society, deadpool];
+var movies = [wall_e, deadpool, dead_poets_society];
 
-function movie(num) {
-    h1[0].innerHTML = movie[0].name;
-    li[0].innerHTML = movie[0].year;
-    li[1].innerHTML = movie[0].genre;  
+function show_movie(num) {
+    $h1[0].innerHTML = movies[num].name;
+    $li[0].innerHTML = movies[num].year;
+    $li[1].innerHTML = movies[num].genre;  
 }
