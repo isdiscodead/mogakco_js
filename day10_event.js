@@ -21,4 +21,3 @@ function onClickEvent() {
 }
 
 $btn.addEventListener('click', onClickEvent);
-
