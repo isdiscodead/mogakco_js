@@ -1,8 +1,27 @@
 var cnt = 0;
+var key = 0;
+
+var question;
 
 var $message =  document.getElementById('bot_message');
 var $img = document.getElementById('img');
 var $title = document.getElementsByTagName('h2')[0];
+
+var json = 
+[
+	{
+		"question" : "안녕",
+		"answer" : "안녕하세요!"
+	},
+	{
+		"question" : "나이",
+		"answer" : "그런 건 비밀로 해둘까요?"
+	},
+	{
+		"question" : "이름",
+		"answer" : "부르고 싶은 대로 불러주세요."
+	}
+]
 
 function check_text() {
 
@@ -11,6 +30,44 @@ function check_text() {
     var typewriter = new Typewriter($message, {
         loop: false
     });
+
+    // 가르칠 것인지 선택
+    if ( key == 1 ) {
+        if ( value == "Y") {
+            typewriter.typeString('뭐라고 대답하면 좋을까요?')
+            .pauseFor(2500)
+            .start();
+            key = 2;
+            
+        } else {
+            key = 0;
+            typewriter.typeString('나중에 꼭 알려주기로 약속해요!')
+            .pauseFor(2500)
+            .start();
+        }
+        
+        return;
+    }
+
+    // 가르쳐준 다음 실행 시 
+    if ( key == 2 ) {
+        answer = value; // 전역변수 answer값에 사용자의 입력을 저장
+        json.push({question: `${question}`, answer: `${answer}`}); 
+        typewriter.typeString('알려줘서 고마워요! 기억하고 있을게요.')
+        .pauseFor(2500)
+        .start();
+    }
+
+    // json에서 탐색
+    for ( let i=0 ; i<json.length ; i++ ) {
+        if ( value == json[i].question ) {
+            typewriter.typeString(json[i].answer)
+            .pauseFor(2500)
+            .start();
+
+            return;
+        }
+    }
 
     if ( value == "alert" ) {
         cnt += 1;
@@ -68,7 +125,13 @@ function check_text() {
     } else {
         console.log(value);
         typewriter.typeString('미안해요, 무슨 말인지 모르겠어요. 😥')
-        .pauseFor(2500)
+        .pauseFor(1000)
+        .deleteAll()
+        .typeString('무슨 뜻인지 가르쳐줄래요? (Y/N)')
+        .pauseFor(1000)
         .start();
+
+        question = value;
+        key = 1
     }
 }
