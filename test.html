@@ -7,43 +7,38 @@
     <title>Document</title>
 
 
-    <!-- Google Trends -->
-    <div class="trend-container">
-        <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/2884_RC01/embed_loader.js"></script> 
-        <script>
-            (function(){
-                var cnt = 3; // 비교 인원
-                // 이름 리스트 ( 임시 ) 
-                const names = ["이재명", "심상정", "윤석열"]
-                var comparisonItem = [];
+<!-- Google Trends -->
+<div class="trend-container">
+    <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/2884_RC01/embed_loader.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            var cnt = 3; // 비교 인원
+            // 이름 리스트 ( 임시 ) 
+            const names = ["이재명", "심상정", "윤석열"]
+            var comparisonItem = [];
+            var exploreQuery = "geo=KR&q=";
 
-                for (let i=0 ; i<3 ; i++ ) {
-                    // 1명 data 생성 후 리스트에 추가
-                    var data = new Object();
-                    data.keyword = names[i];
-                    data.geo = "KR";
-                    data.time = "today 1-m";
-                    comparisonItem.push(data)
-                }
+            for (let i=0 ; i<3 ; i++ ) {
+                // 1명 data 생성 후 리스트에 추가
+                var data = new Object();
+                data.keyword = names[i];
+                data.geo = "KR";
+                data.time = "today 1-m";
+                comparisonItem.push(data)
 
-                trends.embed.renderExploreWidget("TIMESERIES", 
-                {"comparisonItem":comparisonItem, "category":0,"property":""}, 
-                {"exploreQuery":"date=today%201-m&geo=KR&q=%EC%8B%AC%EC%83%81%EC%A0%95,%EC%9D%B4%EC%9E%AC%EB%AA%85,%EC%9C%A4%EC%84%9D%EC%97%B4",
-                "guestPath":"https://trends.google.co.kr:443/trends/embed/"});    
-                
-            })
-        </script>
+                encoded = encodeURI(names[i]);
+                exploreQuery += encoded += ",";
+            }
 
-<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/2884_RC01/embed_loader.js"></script> 
+            exploreQuery += "&date=today 1-m,today 1-m";
+            var jsonData = JSON.stringify(comparisonItem);
 
-            <script type="text/javascript"> 
-                trends.embed.renderExploreWidget("TIMESERIES", 
-                {"comparisonItem":[{"keyword":"심상정","geo":"KR","time":"today 1-m"},{"keyword":"이재명","geo":"KR","time":"today 1-m"},{"keyword":"윤석열","geo":"KR","time":"today 1-m"}],
-                "category":0,"property":""}, 
-                {"exploreQuery":"date=today%201-m&geo=KR&q=%EC%8B%AC%EC%83%81%EC%A0%95,%EC%9D%B4%EC%9E%AC%EB%AA%85,%EC%9C%A4%EC%84%9D%EC%97%B4",
-                "guestPath":"https://trends.google.co.kr:443/trends/embed/"}); 
-            </script>
-    </div>
+            trends.embed.renderExploreWidget("TIMESERIES", 
+            {"comparisonItem":comparisonItem, "category":0,"property":""}, 
+            {"exploreQuery":"geo=KR&q=%EC%9D%B4%EC%9E%AC%EB%AA%85,%EC%8B%AC%EC%83%81%EC%A0%95&date=today 1-m,today 1-m","guestPath":"https://trends.google.co.kr:443/trends/embed/"});    
+        }
+    </script>
+</div>
 
 </div>
 </body>
