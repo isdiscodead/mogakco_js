@@ -1,0 +1,79 @@
+## view 로직 
+def get_context_data(self, *, object_list=None, **kwargs):
+    departcons = DepartCon.objects.all()
+    departs = Depart.objects.all()
+    candies = Candidate.objects.all()
+
+    departcon_json = serializers.serialize('json', departcons)
+    depart_json = serializers.serialize('json', departs)
+    candidate_json = serializers.serialize('json', candies)
+
+    context = {
+        "candidate_list" :  departcons,
+        "departcon_json" : departcon_json,
+        "depart_json": depart_json,
+        "candidate_json": candidate_json
+    }
+
+
+from promiseapp.models import DepartCon, Depart, Candidate
+
+
+## compare.js
+function selectCandidate() {
+    if ( name == "default" ) {
+        return;
+    }
+
+    if ( names.length >= 4 ) {
+        alert("비교는 4명까지 가능합니다.");
+        return;
+    }
+
+    names.push(name);
+
+    // 트렌드 전환
+    initTrendChart(name);
+}
+
+
+## trend.js
+function initTrendChart(name) {
+    var comparisonItem = [];
+    var exploreQuery = "date=today%201-m&geo=KR&q=";
+
+    for (let i=0 ; i<names.length ; i++ ) {
+        // 1명 data 생성 후 리스트에 추가
+        var data = new Object();
+        data.keyword = names[i];
+        data.geo = "KR";
+        data.time = "today 1-m";
+        comparisonItem.push(data);
+
+        encoded = encodeURI(names[i]);
+        exploreQuery += encoded;
+        if(i!=names.length-1) {
+            exploreQuery += ",";
+        }
+
+    }
+
+    console.log(exploreQuery);
+    document.getElementById("trend").innerHTML = "";
+    trends.embed.renderExploreWidgetTo(document.getElementById("trend"), "TIMESERIES", {"comparisonItem":comparisonItem, "category":0,"property":""},{"exploreQuery":exploreQuery,"guestPath":"https://trends.google.co.kr:443/trends/embed/"});
+}
+
+
+## html
+<select class="candidate_combo" name="candidate" onchange="selectCandidate(this.value)">
+
+    <!-- data -->
+    <script>
+        var candidate_json = '{{ candidate_json }}';
+        var departcon_json = '{{ departcon_json }}';
+        var depart_json = '{{ depart_json }}';
+        var names = [];
+    </script>
+    <!---google trends--->
+    <script src="/static/js/trend.js"></script>
+    <script src="/static/js/compare.js"></script>

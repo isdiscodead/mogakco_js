@@ -1,7 +1,7 @@
 window.onload = function() {
     var cnt = 3; // 비교 인원
     // 이름 리스트 ( 임시 ) 
-    const names = ["이재명", "심상정", "윤석열"]
+    const names = ["이재명", "심상정", "윤석열"];
     var comparisonItem = [];
     var exploreQuery = "geo=KR&q=";
 
@@ -18,9 +18,5 @@ window.onload = function() {
     }
 
     exploreQuery += "&date=today 1-m,today 1-m";
-    var jsonData = JSON.stringify(comparisonItem);
-
-    trends.embed.renderExploreWidget("TIMESERIES", 
-    {"comparisonItem":comparisonItem, "category":0,"property":""}, 
-    {"exploreQuery":"geo=KR&q=%EC%9D%B4%EC%9E%AC%EB%AA%85,%EC%8B%AC%EC%83%81%EC%A0%95&date=today 1-m,today 1-m","guestPath":"https://trends.google.co.kr:443/trends/embed/"});    
+    var jsonData = JSON.stringify(comparisonItem);  
 }
